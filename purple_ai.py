@@ -31,7 +31,7 @@ SERVER_URL = os.getenv("SERVER_URL", "http://localhost:9009")
 
 # --- 4. CLIENT CONFIGURATION ---
 client = genai.Client(api_key=GOOGLE_API_KEY)
-MODEL_NAME = "gemini-2.5-pro" # gemini-2.5-flash
+MODEL_NAME = "gemini-3-pro-preview" # gemini-2.5-pro, gemini-2.5-flash
 AGENT_ID = f"Purple-Agent-{MODEL_NAME}"
 
 # =============================================================================
@@ -407,7 +407,7 @@ def get_ai_move(game_state):
 # =============================================================================
 def main():
     session = requests.Session()
-    LEVEL_TO_PLAY = "1"  # Playable levels 1...6
+    LEVEL_TO_PLAY = "1"  # 🟢 Playable levels 1...6
     
     print(f"🟣 Connecting AI Agent ({AGENT_ID}) to {SERVER_URL}...")
     try:
