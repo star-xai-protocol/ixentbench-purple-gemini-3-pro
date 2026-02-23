@@ -75,7 +75,7 @@ The agent communicates with the **Green Agent** using a strict format that separ
   "command": "G@P13:b=1 ; G@P21+90",
   "reasoning": "Priority 5: Pre-move at P13 to align base before the +90 rotation. This creates a vertical jump path for M2 toward the exit.",
   "meta": {
-    "token_usage": { "total": 288868 }
+    "token_usage": { "total": 382612 }
   }
 }
 
