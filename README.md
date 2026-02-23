@@ -71,7 +71,7 @@ The agent communicates with the **Green Agent** using a strict format that separ
 
 ```json
 {
-  "agent_id": "Purple-Agent-gemini-3-pro",
+  "agent_id": "Purple-Agent-gemini-3-pro-preview",
   "command": "G@P13:b=1 ; G@P21+90",
   "reasoning": "Priority 5: Pre-move at P13 to align base before the +90 rotation. This creates a vertical jump path for M2 toward the exit.",
   "meta": {
@@ -91,8 +91,8 @@ Due to the intensive reasoning requirements of Gemini 3 Pro, we implemented a **
 
 ## 📊 Performance Metrics
 
-* **Model:** Gemini 3 Pro
-* **Average Efficiency:** ~55-65 points (Level 1)
+* **Model:** Gemini 3 Pro Preview
+* **Average Efficiency:** ~27-40 points (Level 1)
 * **Success Status:** Verified via automated CI/CD logs.
 
 ---
