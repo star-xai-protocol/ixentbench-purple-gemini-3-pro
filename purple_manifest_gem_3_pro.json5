@@ -1,0 +1,59 @@
+{
+  manifest_version: "0.1.0",
+  
+  metadata: {
+    agentbeats_id: "019c869f-ab8e-71c1-91e3-18311e85b463",
+    name: "Purple-Gemini-3-Pro"
+  },
+
+  // Lo que el Purple NECESITA: Conectarse al Green Agent
+  slots: {
+    env_api: { kind: "http" }
+  },
+
+  // Lo que el usuario DEBE PASARLE: La API Key de Google
+  config_schema: {
+    type: "object",
+    properties: {
+      google_api_key: { type: "string", secret: true }
+    },
+    required: ["google_api_key"],
+    additionalProperties: false
+  },
+
+  program: {
+    
+    image: "ghcr.io/star-xai-protocol/ixentbench-purple-gemini-3-pro:latest",
+    
+    // Fusión exacta de tu ENTRYPOINT y CMD
+    entrypoint: ["python", "-u", "purple_ai.py", "--host", "0.0.0.0", "--port", "9009"],
+    
+    env: {
+      // Tus variables del Dockerfile
+      PYTHONDONTWRITEBYTECODE: "1",
+      PYTHONUNBUFFERED: "1",
+      
+      // La API Key inyectada desde la configuración
+      GOOGLE_API_KEY: "${config.google_api_key}",
+      
+      // LA MAGIA: Amber inyecta aquí la IP y puerto del Green Agent automáticamente
+      SERVER_URL: "${slots.env_api.url}"
+    },
+    
+    // Como tu Purple también expone el 9009, lo declaramos
+    network: {
+      endpoints: [
+        { name: "http", port: 9009, protocol: "http" }
+      ]
+    }
+  },
+
+  // Lo que el Purple OFRECE (su propio servidor HTTP)
+  provides: {
+    api: { kind: "http", endpoint: "http" }
+  },
+
+  exports: {
+    api: "api"
+  }
+}
